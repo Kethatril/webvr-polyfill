@@ -94,6 +94,11 @@ FusionPoseSensor.prototype.getOrientation = function() {
     out.x = 0;
     out.z = 0;
     out.normalize();
+  } else if (WebVRConfig.PITCH_ONLY) {
+    // Make a quaternion that only turns around the X-axis.
+    out.y = 0;
+    out.z = 0;
+    out.normalize();
   }
 
   this.orientationOut_[0] = out.x;
@@ -141,8 +146,13 @@ FusionPoseSensor.prototype.onDeviceMotionChange_ = function(deviceMotion) {
     this.previousTimestampS = timestampS;
     return;
   }
+
   this.accelerometer.set(-accGravity.x, -accGravity.y, -accGravity.z);
-  this.gyroscope.set(rotRate.alpha, rotRate.beta, rotRate.gamma);
+  if (WebVRConfig.PITCH_ONLY) {
+    this.gyroscope.set(0, rotRate.beta, 0);
+  }else{
+    this.gyroscope.set(rotRate.alpha, rotRate.beta, rotRate.gamma);
+  }
 
   // With iOS and Firefox Android, rotationRate is reported in degrees,
   // so we first convert to radians.

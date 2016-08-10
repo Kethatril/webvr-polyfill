@@ -39,6 +39,9 @@ window.WebVRConfig = Util.extend({
   // for panoramas with nothing interesting above or below.
   YAW_ONLY: false,
 
+  // Enable pitch panning only, disabling yaw and roll
+  PITCH_ONLY: false,
+
   // To disable keyboard and mouse controls, if you want to use your own
   // implementation.
   MOUSE_KEYBOARD_CONTROLS_DISABLED: false,

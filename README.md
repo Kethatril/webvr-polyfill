@@ -64,6 +64,9 @@ WebVRConfig = {
   // Enable yaw panning only, disabling roll and pitch. This can be useful
   // for panoramas with nothing interesting above or below.
   YAW_ONLY: true, // Default: false.
+  
+  // Enable pitch panning only, disabling yaw and roll.
+  PITCH_ONLY: true, // Default: false.
 
   // To disable keyboard and mouse controls, if you want to use your own
   // implementation.
